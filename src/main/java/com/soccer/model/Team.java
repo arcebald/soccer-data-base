@@ -1,5 +1,6 @@
 package com.soccer.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -27,5 +28,11 @@ public class Team {
     @OneToMany(mappedBy = "team", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Player> playersList;
+
+    @ManyToOne
+    @JoinColumn(name = "league_id")
+    @JsonIgnore
+    private League league;
+
 
 }
