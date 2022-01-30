@@ -17,6 +17,9 @@ public class Team {
     @Column
     private String name;
 
+    @Column
+    private Integer clubValue;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private TeamAddress teamAddress;
