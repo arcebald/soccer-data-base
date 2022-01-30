@@ -24,6 +24,9 @@ public class Player {
     @Column
     private String position;
 
+    @Column
+    private Integer salary;
+
     @ManyToOne
     @JoinColumn(name = "team_id")
     @JsonIgnore
@@ -32,12 +35,13 @@ public class Player {
     public Player() {
     }
 
-    public Player(Long id, String firstName, String lastName, String dateOfBirth, String position) {
+    public Player(Long id, String firstName, String lastName, String dateOfBirth, String position, Integer salary) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.position = position;
+        this.salary = salary;
     }
 
     public Long getId() {
@@ -88,6 +92,14 @@ public class Player {
         this.team = team;
     }
 
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
@@ -96,6 +108,7 @@ public class Player {
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", position='" + position + '\'' +
+                ", salary=" + salary +
                 ", team=" + team +
                 '}';
     }
