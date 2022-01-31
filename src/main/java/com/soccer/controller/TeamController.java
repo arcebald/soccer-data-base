@@ -2,6 +2,7 @@ package com.soccer.controller;
 
 import com.soccer.model.Player;
 import com.soccer.model.Team;
+import com.soccer.model.TeamAddress;
 import com.soccer.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +72,10 @@ public class TeamController {
                                  @PathVariable(value = "playerId") Long playerId)
     {
         teamService.deleteTeamPlayer(teamId, playerId);
+    }
+    @PostMapping("/address/")
+    public TeamAddress createAddress(@RequestBody TeamAddress addressObject){
+        return teamService.createTeamAddress(addressObject);
     }
 
 
