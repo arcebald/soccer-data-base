@@ -125,17 +125,7 @@ public class TeamService {
         }
     }
 
-//    public List<Recipe> getCategoryRecipes(Long categoryId) {
-//        System.out.println("service calling getCategoryRecipes ==>");
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
-//        if (category == null) {
-//            throw new InformationNotFoundException("category with id " + categoryId + " " +
-//                    "not belongs to this user or category does not exist");
-//        }
-//        return category.getRecipeList();
-//    }
+
     public List<Player> getTeamPlayers(Long teamId){
         Optional<Team> team = teamRepository.findById(teamId);
         if(team.isEmpty()){
@@ -145,5 +135,16 @@ public class TeamService {
         }
     }
 
+    public Player getTeamPlayer(Long teamId, Long playerId){
+        Optional<Team> team = teamRepository.findById(teamId);
+        if(team.isEmpty()){
+            throw new InformationNotFoundException("team with id " +teamId+ " does not exist ");
+        }
+        Optional<Player> player = playerRepository.findByTeamId(teamId).stream().filter(p -> p.getId().equals(teamId)).findFirst();
+        if (!player.isPresent()){
+            throw new InformationNotFoundException("player with id " + playerId + " does not exist");
+        }
+        return player.get();
+    }
 
 }
