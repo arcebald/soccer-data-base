@@ -4,6 +4,7 @@ import com.soccer.exceptions.InformationExistException;
 import com.soccer.exceptions.InformationNotFoundException;
 import com.soccer.model.Player;
 import com.soccer.model.Team;
+import com.soccer.model.TeamAddress;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,59 +40,45 @@ public class TeamService {
     }
 
 
-     public List<Team> getAllTeams(){
+    public List<Team> getAllTeams() {
 
         List<Team> team = teamRepository.findAll();
-        if(team.isEmpty()){
+        if (team.isEmpty()) {
             throw new InformationNotFoundException("no team found in the table");
-        }else {return team;}
-     }
+        } else {
+            return team;
+        }
+    }
 
-    public Team createTeam(Team teamObject){
+    public Team createTeam(Team teamObject) {
         Team team = teamRepository.findByName(teamObject.getName());
-        if(team != null){
+        if (team != null) {
             throw new InformationExistException("team with name " + team.getName() + " already exists");
-        }else {
+        } else {
             return teamRepository.save(teamObject);
         }
     }
 
-        public String deleteTeam(Long teamId){
+    public String deleteTeam(Long teamId) {
         Team team = teamRepository.getById(teamId);
-        if(team == null){
+        if (team == null) {
             throw new InformationNotFoundException("team with id " + teamId + " not found");
-        }else {
+        } else {
             teamRepository.deleteById(teamId);
             return "team with id " + teamId + " has been successfully deleted";
         }
-        }
-//    public Recipe createCategoryRecipe(Long categoryId, Recipe recipeObject) {
-//        System.out.println("service calling createCategoryRecipe ==>");
-//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
-//        if (category == null) {
-//            throw new InformationNotFoundException(
-//                    "category with id " + categoryId + " not belongs to this user or category does not exist");
-//        }
-//        Recipe recipe = recipeRepository.findByNameAndUserId(recipeObject.getName(), userDetails.getUser().getId());
-//        if (recipe != null) {
-//            throw new InformationExistException("recipe with name " + recipe.getName() + " already exists");
-//        }
-//        recipeObject.setUser(userDetails.getUser());
-//        recipeObject.setCategory(category);
-//        return recipeRepository.save(recipeObject);
-//    }
-    public Player createTeamPlayer(Long teamId, Player playerObject){
+    }
+
+    public Player createTeamPlayer(Long teamId, Player playerObject) {
         Optional<Team> team = teamRepository.findById(teamId);
 
-        if(team.isEmpty()){
+        if (team.isEmpty()) {
             throw new InformationNotFoundException("team with id " + teamId + " does not exist");
         }
 
         Player player = playerRepository.findByFirstName(playerObject.getFirstName());
-        if(player != null){
-            throw new InformationExistException("player with firstName" + player.getFirstName() + " and team id " +teamId+ " already exist");
+        if (player != null) {
+            throw new InformationExistException("player with firstName" + player.getFirstName() + " and team id " + teamId + " already exist");
 
         }
         playerObject.setTeam(team.get());
@@ -100,11 +87,11 @@ public class TeamService {
     }
 
 
-    public Team updateTeam(Long teamId, Team teamObject){
+    public Team updateTeam(Long teamId, Team teamObject) {
         Optional<Team> team = teamRepository.findById(teamId);
-        if(team.isEmpty()){
+        if (team.isEmpty()) {
             throw new InformationNotFoundException("team with id " + teamId + " not found");
-        }else{
+        } else {
             team.get().setName(teamObject.getName());
             team.get().setClubValue(teamObject.getClubValue());
             return teamRepository.save(team.get());
@@ -112,39 +99,39 @@ public class TeamService {
     }
 
 
-    public List<Player> getTeamPlayers(Long teamId){
+    public List<Player> getTeamPlayers(Long teamId) {
         Optional<Team> team = teamRepository.findById(teamId);
-        if(team.isEmpty()){
+        if (team.isEmpty()) {
             throw new InformationNotFoundException("team with id " + teamId + " does not exist");
-        }else{
+        } else {
             return team.get().getPlayersList();
         }
     }
 
-    public Player getTeamPlayer(Long teamId, Long playerId){
+    public Player getTeamPlayer(Long teamId, Long playerId) {
         Optional<Team> team = teamRepository.findById(teamId);
-        if(team.isEmpty()){
-            throw new InformationNotFoundException("team with id " +teamId+ " does not exist ");
+        if (team.isEmpty()) {
+            throw new InformationNotFoundException("team with id " + teamId + " does not exist ");
         }
         Optional<Player> player = playerRepository.findByTeamId(teamId).stream().filter(p -> p.getId().equals(teamId)).findFirst();
-        if (!player.isPresent()){
+        if (!player.isPresent()) {
             throw new InformationNotFoundException("player with id " + playerId + " does not exist");
         }
         return player.get();
     }
 
-    public Player updateTeamPlayer(Long teamId, Long playerId, Player playerObject){
+    public Player updateTeamPlayer(Long teamId, Long playerId, Player playerObject) {
         Optional<Team> team = teamRepository.findById(teamId);
-        if(team.isEmpty()){
-            throw new InformationNotFoundException("team with id " + teamId+ " does not exist");
+        if (team.isEmpty()) {
+            throw new InformationNotFoundException("team with id " + teamId + " does not exist");
         }
         Optional<Player> player = playerRepository.findById(playerId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
-        if(!player.isPresent()){
+        if (!player.isPresent()) {
             throw new InformationNotFoundException("player with id " + playerId + " does not exist");
         }
         Player oldPlayer = playerRepository.findByFirstName(playerObject.getFirstName());
-        if(oldPlayer != null){
-            throw new InformationNotFoundException("player with name " + oldPlayer.getFirstName()+ " already exists");
+        if (oldPlayer != null) {
+            throw new InformationNotFoundException("player with name " + oldPlayer.getFirstName() + " already exists");
         }
         player.get().setFirstName(playerObject.getFirstName());
         player.get().setLastName(playerObject.getLastName());
@@ -153,17 +140,20 @@ public class TeamService {
         player.get().setDateOfBirth(playerObject.getDateOfBirth());
         return playerRepository.save(player.get());
     }
-    public void deleteTeamPlayer(Long teamId, Long playerId){
+
+    public void deleteTeamPlayer(Long teamId, Long playerId) {
         Optional<Team> team = teamRepository.findById(teamId);
-        if(team.isEmpty()){
-            throw new InformationNotFoundException("team with id " + teamId+ " does not exist");
+        if (team.isEmpty()) {
+            throw new InformationNotFoundException("team with id " + teamId + " does not exist");
         }
         Optional<Player> player = playerRepository.findById(teamId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
-        if(!player.isPresent()){
+        if (!player.isPresent()) {
             throw new InformationNotFoundException(" player with id " + playerId + " does not exist");
         }
         playerRepository.deleteById(player.get().getId());
     }
-//    public void
+    public void createTeamAddress(TeamAddress teamAddress){
+        TeamAddress teamAddress1 =
+    }
 
 }
