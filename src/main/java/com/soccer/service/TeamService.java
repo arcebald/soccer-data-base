@@ -5,6 +5,7 @@ import com.soccer.exceptions.InformationNotFoundException;
 import com.soccer.model.Player;
 import com.soccer.model.Team;
 import com.soccer.model.TeamAddress;
+import com.soccer.repository.AddressRepository;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class TeamService {
     @Autowired
     public void setTeamRepository(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
+    }
+    private AddressRepository addressRepository;
+    @Autowired
+    public void setAddressRepository(AddressRepository addressRepository){
+        this.addressRepository = addressRepository;
     }
 
     private PlayerRepository playerRepository;
@@ -152,8 +158,13 @@ public class TeamService {
         }
         playerRepository.deleteById(player.get().getId());
     }
-    public void createTeamAddress(TeamAddress teamAddress){
-        TeamAddress teamAddress1 =
+    public TeamAddress createTeamAddress(TeamAddress teamAddress){
+        TeamAddress teamAddress1 = addressRepository.findByStreet(teamAddress.getStreet());
+        if(teamAddress1 != null){
+            throw new InformationExistException("address with " + teamAddress1.getStreet()+ " already exists");
+        }else{
+            return addressRepository.save(teamAddress);
+        }
     }
 
 }
