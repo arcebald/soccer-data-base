@@ -54,4 +54,14 @@ public class TeamService {
             return teamRepository.save(teamObject);
         }
     }
+
+        public String deleteTeam(Long teamId){
+        Team team = teamRepository.getById(teamId);
+        if(team == null){
+            throw new InformationNotFoundException("team with id " + teamId + " not found");
+        }else {
+            teamRepository.deleteById(teamId);
+            return "team with id " + teamId + " has been successfully deleted";
+        }
+        }
 }
