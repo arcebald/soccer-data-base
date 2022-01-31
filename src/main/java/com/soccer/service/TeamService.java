@@ -2,6 +2,7 @@ package com.soccer.service;
 
 import com.soccer.exceptions.InformationExistException;
 import com.soccer.exceptions.InformationNotFoundException;
+import com.soccer.model.Player;
 import com.soccer.model.Team;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.repository.TeamRepository;
@@ -64,4 +65,64 @@ public class TeamService {
             return "team with id " + teamId + " has been successfully deleted";
         }
         }
+//    public Recipe createCategoryRecipe(Long categoryId, Recipe recipeObject) {
+//        System.out.println("service calling createCategoryRecipe ==>");
+//        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+//                .getPrincipal();
+//        Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
+//        if (category == null) {
+//            throw new InformationNotFoundException(
+//                    "category with id " + categoryId + " not belongs to this user or category does not exist");
+//        }
+//        Recipe recipe = recipeRepository.findByNameAndUserId(recipeObject.getName(), userDetails.getUser().getId());
+//        if (recipe != null) {
+//            throw new InformationExistException("recipe with name " + recipe.getName() + " already exists");
+//        }
+//        recipeObject.setUser(userDetails.getUser());
+//        recipeObject.setCategory(category);
+//        return recipeRepository.save(recipeObject);
+//    }
+//    public Player createTeamPlayer(Long teamId, Player playerObject){
+//        Optional<Team> team = teamRepository.findById(teamId);
+//
+//        if(team.isEmpty()){
+//            throw new InformationNotFoundException("team with id " + teamId + " does not exist");
+//        }
+//
+//        Player player = playerRepository.findByTeamIdAndPlayerLastName(teamId, playerObject.getLastName());
+//        if(player != null){
+//            throw new InformationExistException("player with lastName" + player.getLastName() + " and team id " +teamId+ " already exist");
+//
+//        }
+//        playerObject.setTeam(team.get());
+//
+//        return playerRepository.save(playerObject);
+//    }
+
+//public Category updateCategory(Long categoryId, Category categoryObject){
+//    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+//            .getPrincipal();
+//    Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
+//    if (category == null) {
+//        throw new InformationNotFoundException("category with id " + categoryId + " not found");
+//    } else {
+//        category.setDescription(categoryObject.getDescription());
+//        category.setName(categoryObject.getName());
+//        category.setUser(userDetails.getUser());
+//        return categoryRepository.save(category);
+//    }
+
+//}
+
+    public Team updateTeam(Long teamId, Team teamObject){
+        Optional<Team> team = teamRepository.findById(teamId);
+        if(team.isEmpty()){
+            throw new InformationNotFoundException("team with id " + teamId + " not found");
+        }else{
+            team.get().setName(teamObject.getName());
+            team.get().setClubValue(teamObject.getClubValue());
+            return teamRepository.save(team.get());
+        }
+    }
+
 }
