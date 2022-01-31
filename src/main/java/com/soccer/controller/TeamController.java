@@ -45,10 +45,10 @@ public class TeamController {
     public String deleteTeam(@PathVariable(value = "teamId") Long teamId) {
         return teamService.deleteTeam(teamId);
     }
-//    @PostMapping("/teams/{teamId}/players/")
-//    public Player createTeamPlayer(@PathVariable(value = "teamId") Long teamId, @RequestBody Player playerObject){
-//        return teamService.createTeamPlayer(teamId, playerObject);
-//    }
+    @PostMapping("/teams/{teamId}/players/")
+    public Player createTeamPlayer(@PathVariable(value = "teamId") Long teamId, @RequestBody Player playerObject){
+        return teamService.createTeamPlayer(teamId, playerObject);
+    }
 
     @GetMapping("/teams/{teamId}/players/")
     public List<Player> getTeamPlayers(@PathVariable(value = "teamId") Long teamId){

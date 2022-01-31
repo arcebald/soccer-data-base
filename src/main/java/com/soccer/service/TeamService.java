@@ -82,37 +82,23 @@ public class TeamService {
 //        recipeObject.setCategory(category);
 //        return recipeRepository.save(recipeObject);
 //    }
-//    public Player createTeamPlayer(Long teamId, Player playerObject){
-//        Optional<Team> team = teamRepository.findById(teamId);
-//
-//        if(team.isEmpty()){
-//            throw new InformationNotFoundException("team with id " + teamId + " does not exist");
-//        }
-//
-//        Player player = playerRepository.findByTeamIdAndPlayerLastName(teamId, playerObject.getLastName());
-//        if(player != null){
-//            throw new InformationExistException("player with lastName" + player.getLastName() + " and team id " +teamId+ " already exist");
-//
-//        }
-//        playerObject.setTeam(team.get());
-//
-//        return playerRepository.save(playerObject);
-//    }
+    public Player createTeamPlayer(Long teamId, Player playerObject){
+        Optional<Team> team = teamRepository.findById(teamId);
 
-//public Category updateCategory(Long categoryId, Category categoryObject){
-//    MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
-//            .getPrincipal();
-//    Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
-//    if (category == null) {
-//        throw new InformationNotFoundException("category with id " + categoryId + " not found");
-//    } else {
-//        category.setDescription(categoryObject.getDescription());
-//        category.setName(categoryObject.getName());
-//        category.setUser(userDetails.getUser());
-//        return categoryRepository.save(category);
-//    }
+        if(team.isEmpty()){
+            throw new InformationNotFoundException("team with id " + teamId + " does not exist");
+        }
 
-//}
+        Player player = playerRepository.findByFirstName(playerObject.getFirstName());
+        if(player != null){
+            throw new InformationExistException("player with firstName" + player.getFirstName() + " and team id " +teamId+ " already exist");
+
+        }
+        playerObject.setTeam(team.get());
+
+        return playerRepository.save(playerObject);
+    }
+
 
     public Team updateTeam(Long teamId, Team teamObject){
         Optional<Team> team = teamRepository.findById(teamId);
