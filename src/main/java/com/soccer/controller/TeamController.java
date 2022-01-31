@@ -66,12 +66,12 @@ public class TeamController {
                                    @RequestBody Player playerObject){
         return teamService.updateTeamPlayer(teamId, playerId, playerObject);
     }
-//    @DeleteMapping("/teams/{teamId}/players/{playerId}/")
-//    public void deleteTeamPlayer(@PathVariable(value = "teamId") Long teamId,
-//                                 @PathVariable(value = "playerId") Long playerId)
-//    {
-//        teamService.deleteTeamPlayer(teamId, playerId);
-//    }
+    @DeleteMapping("/teams/{teamId}/players/{playerId}/")
+    public void deleteTeamPlayer(@PathVariable(value = "teamId") Long teamId,
+                                 @PathVariable(value = "playerId") Long playerId)
+    {
+        teamService.deleteTeamPlayer(teamId, playerId);
+    }
 
 
 

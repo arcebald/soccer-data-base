@@ -167,17 +167,17 @@ public class TeamService {
         player.get().setDateOfBirth(playerObject.getDateOfBirth());
         return playerRepository.save(player.get());
     }
-//    public void deleteTeamPlayer(Long teamId, Long playerId){
-//        Optional<Team> team = teamRepository.findById(teamId);
-//        if(team.isEmpty()){
-//            throw new InformationNotFoundException("team with id " + teamId+ " does not exist");
-//        }
-//        Optional<Player> player = playerRepository.findByTeamId(teamId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
-//        if(!player.isPresent()){
-//            throw new InformationNotFoundException(" player with id " + playerId + " does not exist");
-//        }
-//        playerRepository.deleteById(player.get().getId());
-//    }
+    public void deleteTeamPlayer(Long teamId, Long playerId){
+        Optional<Team> team = teamRepository.findById(teamId);
+        if(team.isEmpty()){
+            throw new InformationNotFoundException("team with id " + teamId+ " does not exist");
+        }
+        Optional<Player> player = playerRepository.findById(teamId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
+        if(!player.isPresent()){
+            throw new InformationNotFoundException(" player with id " + playerId + " does not exist");
+        }
+        playerRepository.deleteById(player.get().getId());
+    }
 //    public void
 
 }
