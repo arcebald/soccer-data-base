@@ -55,5 +55,11 @@ public class TeamController {
         return teamService.getTeamPlayers(teamId);
     }
 
+    @GetMapping("/teams/{teamId}/players/{playerId}/")
+    public Player getTeamPlayer(@PathVariable(value = "teamId") Long teamId, @PathVariable(value = "playerId") Long playerId){
+        return teamService.getTeamPlayer(teamId, playerId);
+    }
+
+
 
 }
