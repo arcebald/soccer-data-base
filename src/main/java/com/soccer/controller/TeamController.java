@@ -60,18 +60,18 @@ public class TeamController {
         return teamService.getTeamPlayer(teamId, playerId);
     }
 
-//    @PutMapping("/teams/{teamId}/players/{playerId}")
-//    public Player updateTeamPlayer(@PathVariable(value = "teamId") Long teamId,
-//                                   @PathVariable(value = "playerId") Long playerId,
-//                                   @RequestBody Player playerObject){
-//        return teamService.updateTeamPlayer(teamId, playerId, playerObject);
-//    }
-    @DeleteMapping("/teams/{teamId}/players/{playerId}")
-    public void deleteTeamPlayer(@PathVariable(value = "teamId") Long teamId,
-                                 @PathVariable(value = "playerId") Long playerId)
-    {
-        teamService.deleteTeamPlayer(teamId, playerId);
+    @PutMapping("/teams/{teamId}/players/{playerId}")
+    public Player updateTeamPlayer(@PathVariable(value = "teamId") Long teamId,
+                                   @PathVariable(value = "playerId") Long playerId,
+                                   @RequestBody Player playerObject){
+        return teamService.updateTeamPlayer(teamId, playerId, playerObject);
     }
+//    @DeleteMapping("/teams/{teamId}/players/{playerId}/")
+//    public void deleteTeamPlayer(@PathVariable(value = "teamId") Long teamId,
+//                                 @PathVariable(value = "playerId") Long playerId)
+//    {
+//        teamService.deleteTeamPlayer(teamId, playerId);
+//    }
 
 
 

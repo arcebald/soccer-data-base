@@ -147,36 +147,37 @@ public class TeamService {
         return player.get();
     }
 
-//    public Player updateTeamPlayer(Long teamId, Long playerId, Player playerObject){
-//        Optional<Team> team = teamRepository.findById(teamId);
-//        if(team.isEmpty()){
-//            throw new InformationNotFoundException("team with id " + teamId+ " does not exist");
-//        }
-//        Optional<Player> player = playerRepository.findByPlayerId(playerId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
-//        if(!player.isPresent()){
-//            throw new InformationNotFoundException("player with id " + playerId + " does not exist");
-//        }
-//        Player oldPlayer = playerRepository.findByNameAndIsNot(playerObject.getFirstName(), playerId);
-//        if(oldPlayer != null){
-//            throw new InformationNotFoundException("player with name " + oldPlayer.getFirstName()+ " already exists");
-//        }
-//        player.get().setFirstName(playerObject.getFirstName());
-//        player.get().setLastName(playerObject.getLastName());
-//        player.get().setPosition(playerObject.getPosition());
-//        player.get().setSalary(playerObject.getSalary());
-//        player.get().setDateOfBirth(playerObject.getDateOfBirth());
-//        return playerRepository.save(player.get());
-//    }
-    public void deleteTeamPlayer(Long teamId, Long playerId){
+    public Player updateTeamPlayer(Long teamId, Long playerId, Player playerObject){
         Optional<Team> team = teamRepository.findById(teamId);
         if(team.isEmpty()){
             throw new InformationNotFoundException("team with id " + teamId+ " does not exist");
         }
-        Optional<Player> player = playerRepository.findByTeamId(teamId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
+        Optional<Player> player = playerRepository.findById(playerId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
         if(!player.isPresent()){
-            throw new InformationNotFoundException(" player with id " + playerId + " does not exist");
+            throw new InformationNotFoundException("player with id " + playerId + " does not exist");
         }
-        playerRepository.deleteById(player.get().getId());
+        Player oldPlayer = playerRepository.findByFirstName(playerObject.getFirstName());
+        if(oldPlayer != null){
+            throw new InformationNotFoundException("player with name " + oldPlayer.getFirstName()+ " already exists");
+        }
+        player.get().setFirstName(playerObject.getFirstName());
+        player.get().setLastName(playerObject.getLastName());
+        player.get().setPosition(playerObject.getPosition());
+        player.get().setSalary(playerObject.getSalary());
+        player.get().setDateOfBirth(playerObject.getDateOfBirth());
+        return playerRepository.save(player.get());
     }
+//    public void deleteTeamPlayer(Long teamId, Long playerId){
+//        Optional<Team> team = teamRepository.findById(teamId);
+//        if(team.isEmpty()){
+//            throw new InformationNotFoundException("team with id " + teamId+ " does not exist");
+//        }
+//        Optional<Player> player = playerRepository.findByTeamId(teamId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
+//        if(!player.isPresent()){
+//            throw new InformationNotFoundException(" player with id " + playerId + " does not exist");
+//        }
+//        playerRepository.deleteById(player.get().getId());
+//    }
+//    public void
 
 }

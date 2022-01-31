@@ -100,16 +100,16 @@ public class Player {
         this.salary = salary;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Player{" +
-//                "id=" + id +
-//                ", firstName='" + firstName + '\'' +
-//                ", lastName='" + lastName + '\'' +
-//                ", dateOfBirth='" + dateOfBirth + '\'' +
-//                ", position='" + position + '\'' +
-//                ", salary=" + salary +
-//                ", team=" + team +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", position='" + position + '\'' +
+                ", salary=" + salary +
+                ", team=" + team +
+                '}';
+    }
 }
