@@ -49,10 +49,11 @@ public class TeamController {
 //    public Player createTeamPlayer(@PathVariable(value = "teamId") Long teamId, @RequestBody Player playerObject){
 //        return teamService.createTeamPlayer(teamId, playerObject);
 //    }
-//@PutMapping("/categories/{categoryId}/")
-//public Category updateCategory(@PathVariable(value = "categoryId") Long categoryId, @RequestBody Category categoryObject) {
-//    return categoryService.updateCategory(categoryId, categoryObject);
-//}
+
+    @GetMapping("/teams/{teamId}/players/")
+    public List<Player> getTeamPlayers(@PathVariable(value = "teamId") Long teamId){
+        return teamService.getTeamPlayers(teamId);
+    }
 
 
 }
