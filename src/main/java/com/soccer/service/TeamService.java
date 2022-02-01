@@ -163,8 +163,22 @@ public class TeamService {
         if(teamAddress1 != null){
             throw new InformationExistException("address with " + teamAddress1.getStreet()+ " already exists");
         }else{
+            System.out.println("here is the zipcode : "+ teamAddress.getZipcode());
             return addressRepository.save(teamAddress);
         }
+    }
+    public TeamAddress updateTeamAddress(Long id, TeamAddress teamAddressObject){
+        Optional<TeamAddress> teamAddress = addressRepository.findById(id);
+        if(teamAddress.isEmpty()){
+            throw new InformationNotFoundException("address id " + id + " not found");
+        }else{
+            teamAddress.get().setCity(teamAddressObject.getCity());
+            teamAddress.get().setZipcode(teamAddressObject.getZipcode());
+            teamAddress.get().setState(teamAddressObject.getState());
+            teamAddress.get().setStreet(teamAddressObject.getStreet());
+            return addressRepository.save(teamAddress.get());
+        }
+
     }
 
 }

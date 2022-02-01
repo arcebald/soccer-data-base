@@ -97,9 +97,6 @@ public class Team {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", clubValue=" + clubValue +
-                ", teamAddress=" + teamAddress +
-                ", playersList=" + playersList +
-                ", league=" + league +
                 '}';
     }
 }
