@@ -77,6 +77,10 @@ public class TeamController {
     public TeamAddress createAddress(@RequestBody TeamAddress addressObject){
         return teamService.createTeamAddress(addressObject);
     }
+    @PutMapping("/address/{addressId}/")
+    public TeamAddress updateTeamAddress(@PathVariable(value = "addressId") Long id, @RequestBody TeamAddress teamAddressObject){
+        return teamService.updateTeamAddress(id, teamAddressObject);
+    }
 
 
 
