@@ -20,7 +20,7 @@ public class League {
     @Column
     private Integer year;
 
-    @OneToMany(mappedBy = "league", orphanRemoval = true)
+    @OneToMany(mappedBy = "league")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Team> listOfTeams;
 

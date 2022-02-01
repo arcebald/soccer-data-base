@@ -219,5 +219,16 @@ public class TeamService {
             return leagueRepository.save(leagueObject);
         }
     }
+    public League updateLeague(Long leagueId, League leagueObject){
+        Optional<League> league = leagueRepository.findById(leagueId);
+        if(league.isEmpty()){
+            throw new InformationNotFoundException("league with id " + leagueId + " not found");
+        }else{
+            league.get().setName(leagueObject.getName());
+            league.get().setYear(leagueObject.getYear());
+            return leagueRepository.save(leagueObject);
+        }
+
+    }
 
 }
