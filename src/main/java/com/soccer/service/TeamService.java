@@ -180,5 +180,12 @@ public class TeamService {
         }
 
     }
+    public List<TeamAddress> getAllAddresses(){
+        List<TeamAddress> teamAddresses = addressRepository.findAll();
+        if(teamAddresses.isEmpty()){
+            throw new InformationNotFoundException("no addresses found in the table");
+        }
+        return teamAddresses;
+    }
 
 }
