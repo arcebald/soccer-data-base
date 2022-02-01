@@ -16,3 +16,10 @@
 |7. As a user, I would like to modify a player salary/position.
 |8. As a user, I would like to delete a player from the team.
 |9. As a user, I would like to list all the players in the team.
+
+## System Tools Used
+
+- Spring Boot
+- Postgres
+- IntelliJ IDEA 2021.3
+- Postman
