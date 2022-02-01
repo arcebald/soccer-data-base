@@ -32,3 +32,9 @@
 | GET _/api/teams/{teamId}/_ | GET team by ID
 | POST _/api/teams/_ | POST a new team
 | DELETE _/api/teams/{teamId}/_ | DELETE a team by ID
+| POST _/api/teams/{teamId}/players/_ | POST a player in a team
+| PUT _/api/teams/{teamId}/_ | PUT update a team by ID
+| GET _/api/teams/{teamId}/players/_ GET a list of players for the team with id specified
+| GET _/api/teams/{teamId}/players/{playerId}/_ GET a player from a team
+| DELETE _/api/teams/{teamId}/players/{playerId}/_ DELETE a player from the a team
+
