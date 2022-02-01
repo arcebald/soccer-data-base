@@ -23,3 +23,12 @@
 - Postgres
 - IntelliJ IDEA 2021.3
 - Postman
+
+## Endpoints
+
+| ENDPOINT | FUNCTIONALITY |
+| --- | :--- |
+| GET _/api/teams/_ | GET all Teams
+| GET _/api/teams/{teamId}/_ | GET team by ID
+| POST _/api/teams/_ | POST a new team
+| DELETE _/api/teams/{teamId}/_ | DELETE a team by ID
