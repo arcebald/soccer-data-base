@@ -98,8 +98,10 @@ public class TeamController {
     public League createLeague(@RequestBody League leagueObject){
         return teamService.createLeague(leagueObject);
     }
-
-
+    @PutMapping("/leagues/{leagueId}")
+    public League updateLeague(@PathVariable(value = "leagueId") Long leagueId, @RequestBody League leagueObject){
+        return teamService.updateLeague(leagueId, leagueObject);
+    }
 
 
 }
