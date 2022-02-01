@@ -1,5 +1,6 @@
 package com.soccer.controller;
 
+import com.soccer.model.League;
 import com.soccer.model.Player;
 import com.soccer.model.Team;
 import com.soccer.model.TeamAddress;
@@ -85,6 +86,11 @@ public class TeamController {
     public List<TeamAddress> getAllAddresses(){
         return teamService.getAllAddresses();
     }
+    @GetMapping("/leagues/")
+    public List<League> getAllLeagues(){
+        return teamService.getAllLeagues();
+    }
+
 
 
 

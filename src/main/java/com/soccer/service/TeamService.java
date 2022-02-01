@@ -201,5 +201,14 @@ public class TeamService {
         }
         return leagues;
     }
+    public String deleteLeague(Long leagueId){
+        Optional<League> league = leagueRepository.findById(leagueId);
+        if(league.isEmpty()){
+            throw new InformationNotFoundException("league with id " + leagueId + " does not exist");
+        }else{
+            leagueRepository.deleteById(leagueId);
+            return "league with id " + leagueId + " has been successfully deleted";
+        }
+    }
 
 }
