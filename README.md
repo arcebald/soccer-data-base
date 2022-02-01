@@ -1,4 +1,4 @@
-# soccer-data-base
+# Soccer-Data-Base API
 ## Entity Relationship Diagram (ERD):
 
 ![ERD.png](images/ERD.png)
