@@ -2,10 +2,12 @@ package com.soccer.service;
 
 import com.soccer.exceptions.InformationExistException;
 import com.soccer.exceptions.InformationNotFoundException;
+import com.soccer.model.League;
 import com.soccer.model.Player;
 import com.soccer.model.Team;
 import com.soccer.model.TeamAddress;
 import com.soccer.repository.AddressRepository;
+import com.soccer.repository.LeagueRepository;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,11 @@ public class TeamService {
     @Autowired
     public void setPlayerRepository(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
+    }
+    private LeagueRepository leagueRepository;
+    @Autowired
+    public void setLeagueRepository(LeagueRepository leagueRepository){
+        this.leagueRepository = leagueRepository;
     }
 
     public Team getTeam(Long teamId) {
@@ -186,6 +193,13 @@ public class TeamService {
             throw new InformationNotFoundException("no addresses found in the table");
         }
         return teamAddresses;
+    }
+    public List<League> getAllLeagues(){
+        List<League> leagues = leagueRepository.findAll();
+        if(leagues.isEmpty()){
+            throw new InformationNotFoundException("no leagues found in the table");
+        }
+        return leagues;
     }
 
 }

@@ -9,8 +9,5 @@ import java.util.Optional;
 public interface PlayerRepository extends JpaRepository<Player, Long> {
     List<Player> findByTeamId(Long teamId);
 
-
-    //List<Player> findById(Long playerId);
-
     Player findByFirstName(String firstName);
 }
