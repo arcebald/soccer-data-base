@@ -90,6 +90,10 @@ public class TeamController {
     public List<League> getAllLeagues(){
         return teamService.getAllLeagues();
     }
+    @DeleteMapping("/leagues/{leagueId}/")
+    public String deleteLeague(@PathVariable(value = "leagueId") Long leagueId){
+        return teamService.deleteLeague(leagueId);
+    }
 
 
 

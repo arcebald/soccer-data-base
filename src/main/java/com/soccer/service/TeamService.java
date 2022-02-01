@@ -210,5 +210,14 @@ public class TeamService {
             return "league with id " + leagueId + " has been successfully deleted";
         }
     }
+    public League createLeague(League leagueObject){
+        League league = leagueRepository.findByName(leagueObject.getName());
+        if(league != null){
+            throw new InformationExistException(" league with name" + leagueObject.getName() + " already exists");
+        }
+        else{
+            return leagueRepository.save(leagueObject);
+        }
+    }
 
 }
