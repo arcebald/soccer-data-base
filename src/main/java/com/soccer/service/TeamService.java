@@ -5,8 +5,6 @@ import com.soccer.exceptions.InformationNotFoundException;
 import com.soccer.model.League;
 import com.soccer.model.Player;
 import com.soccer.model.Team;
-import com.soccer.model.TeamAddress;
-import com.soccer.repository.AddressRepository;
 import com.soccer.repository.LeagueRepository;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.repository.TeamRepository;
@@ -24,11 +22,6 @@ public class TeamService {
     @Autowired
     public void setTeamRepository(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
-    }
-    private AddressRepository addressRepository;
-    @Autowired
-    public void setAddressRepository(AddressRepository addressRepository){
-        this.addressRepository = addressRepository;
     }
 
     private PlayerRepository playerRepository;
@@ -63,11 +56,17 @@ public class TeamService {
         }
     }
 
-    public Team createTeam(Team teamObject) {
+    public Team createTeam(Team teamObject, Long leagueId) {
+        Optional<League> league = leagueRepository.findById(leagueId);
+        if(league.isEmpty()){
+            throw new InformationNotFoundException("league with the id" +leagueId+ " not found");
+        }
+
         Team team = teamRepository.findByName(teamObject.getName());
         if (team != null) {
             throw new InformationExistException("team with name " + team.getName() + " already exists");
         } else {
+            teamObject.setLeague(league.get());
             return teamRepository.save(teamObject);
         }
     }
@@ -165,70 +164,6 @@ public class TeamService {
         }
         playerRepository.deleteById(player.get().getId());
     }
-    public TeamAddress createTeamAddress(TeamAddress teamAddress){
-        TeamAddress teamAddress1 = addressRepository.findByStreet(teamAddress.getStreet());
-        if(teamAddress1 != null){
-            throw new InformationExistException("address with " + teamAddress1.getStreet()+ " already exists");
-        }else{
-            System.out.println("here is the zipcode : "+ teamAddress.getZipcode());
-            return addressRepository.save(teamAddress);
-        }
-    }
-    public TeamAddress updateTeamAddress(Long id, TeamAddress teamAddressObject){
-        Optional<TeamAddress> teamAddress = addressRepository.findById(id);
-        if(teamAddress.isEmpty()){
-            throw new InformationNotFoundException("address id " + id + " not found");
-        }else{
-            teamAddress.get().setCity(teamAddressObject.getCity());
-            teamAddress.get().setZipcode(teamAddressObject.getZipcode());
-            teamAddress.get().setState(teamAddressObject.getState());
-            teamAddress.get().setStreet(teamAddressObject.getStreet());
-            return addressRepository.save(teamAddress.get());
-        }
 
-    }
-    public List<TeamAddress> getAllAddresses(){
-        List<TeamAddress> teamAddresses = addressRepository.findAll();
-        if(teamAddresses.isEmpty()){
-            throw new InformationNotFoundException("no addresses found in the table");
-        }
-        return teamAddresses;
-    }
-    public List<League> getAllLeagues(){
-        List<League> leagues = leagueRepository.findAll();
-        if(leagues.isEmpty()){
-            throw new InformationNotFoundException("no leagues found in the table");
-        }
-        return leagues;
-    }
-    public String deleteLeague(Long leagueId){
-        Optional<League> league = leagueRepository.findById(leagueId);
-        if(league.isEmpty()){
-            throw new InformationNotFoundException("league with id " + leagueId + " does not exist");
-        }else{
-            leagueRepository.deleteById(leagueId);
-            return "league with id " + leagueId + " has been successfully deleted";
-        }
-    }
-    public League createLeague(League leagueObject){
-        League league = leagueRepository.findByName(leagueObject.getName());
-        if(league != null){
-            throw new InformationExistException(" league with name" + leagueObject.getName() + " already exists");
-        }
-        else{
-            return leagueRepository.save(leagueObject);
-        }
-    }
-    public League updateLeague(Long leagueId, League leagueObject){
-        Optional<League> league = leagueRepository.findById(leagueId);
-        if(league.isEmpty()){
-            throw new InformationNotFoundException("league with id " + leagueId + " not found");
-        }else{
-            league.get().setName(leagueObject.getName());
-            league.get().setYear(leagueObject.getYear());
-            return leagueRepository.save(leagueObject);
-        }
-
-    }
 
 }
