@@ -94,6 +94,10 @@ public class TeamController {
     public String deleteLeague(@PathVariable(value = "leagueId") Long leagueId){
         return teamService.deleteLeague(leagueId);
     }
+    @PostMapping("/leagues/")
+    public League createLeague(@RequestBody League leagueObject){
+        return teamService.createLeague(leagueObject);
+    }
 
 
 
