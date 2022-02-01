@@ -81,6 +81,10 @@ public class TeamController {
     public TeamAddress updateTeamAddress(@PathVariable(value = "addressId") Long id, @RequestBody TeamAddress teamAddressObject){
         return teamService.updateTeamAddress(id, teamAddressObject);
     }
+    @GetMapping("/address/")
+    public List<TeamAddress> getAllAddresses(){
+        return teamService.getAllAddresses();
+    }
 
 
 
