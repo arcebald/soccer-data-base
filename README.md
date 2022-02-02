@@ -28,14 +28,14 @@ In the resources folder I changed I added a new file application-dev.properties 
 ![structure.png](images/structure.png)
 
 ## Testing with Postman 
-- ### Get all teams
+- #### Get all teams
 
 ![getallteams.png](images/getallteams.png)
 
-- ### Create new teamPlayer
+- #### Create new teamPlayer
 ![newteamplayer.png](images/newteamplayer.png)
 
-- ### Delete team by id
+- #### Delete team by id
 ![deleteteambyid.png](images/deleteteambyid.png)
 ## Entity Relationship Diagram (ERD):
 
