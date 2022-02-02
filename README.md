@@ -34,7 +34,15 @@
 | DELETE _/api/teams/{teamId}/_ | DELETE a team by ID
 | POST _/api/teams/{teamId}/players/_ | POST a player in a team
 | PUT _/api/teams/{teamId}/_ | PUT update a team by ID
-| GET _/api/teams/{teamId}/players/_ GET a list of players for the team with id specified
-| GET _/api/teams/{teamId}/players/{playerId}/_ GET a player from a team
-| DELETE _/api/teams/{teamId}/players/{playerId}/_ DELETE a player from the a team
+| GET _/api/teams/{teamId}/players/_ | GET a list of players for the team with id specified
+| GET _/api/teams/{teamId}/players/{playerId}/_ | GET a player from a team
+| DELETE _/api/teams/{teamId}/players/{playerId}/_ | DELETE a player from the a team
+| PUT _/api/teams/{teamId}/players/{playerId}/_ | PUT update a player in the team
+| POST _/api/address/_ | POST create a new address
+| PUT _/api/address/{addressId}/_ | PUT update an address
+| GET _/api/leagues/_ | GET all the leagues
+| DELETE _/api/leagues/{leagueId}/_ | DELETE a league by id
+| POST _/api/leagues/_ | POST new league
+| PUT _/api/leagues/{leagueId}/_ | PUT to change a league
+| POST _/api/leagues/{leagueId}/teams/{teamId}/_ | POST a team through a league id
 
