@@ -90,4 +90,7 @@ In the resources folder I changed I added a new file application-dev.properties 
 | POST _/api/leagues/{leagueId}/teams/{teamId}/_ | POST a team through a league id
 
 ## Project Challenges
+1. The first challenge I faced was designing the ERD for the system and the relashion between the tables. After spending some time on https://vertabelo.com/blog/database-model-for-an-online-store/ I had a better picture how my system will work.
+2. Another challenge I faced was the custom methods in the repositories using JpaRepository. I created my custom method in the  repository and it did not work the way I wanted to query. I had to debug my code for some time until I figured out that I had a wrong field name in my query.
+3. During the creation of a new team I did notice that the team's address was not deleted after I delete a team. This was resolved by adding the orphanRemoval = true in the @Column annotation. 
 
