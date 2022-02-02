@@ -18,6 +18,15 @@ In the resources folder I changed I added a new file application-dev.properties 
 - Application-dev.properties file
 ![properties.png](images/properties.png)
 
+## Project Structure
+1.  Controller: This package will house the LeagueController and TeamController for calling the right Service
+2.  Exceptions: This package holds the custom exceptions
+3.  Model: This package holds all the Entites classes
+4.  Repository: This package holds the repositories for accessing Jpa interface and accessing the database
+5.  Service: This package holds the business logic
+
+![structure.png](images/structure.png)
+
 ## Entity Relationship Diagram (ERD):
 
 ![ERD.png](images/ERD.png)
