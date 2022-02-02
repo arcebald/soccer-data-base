@@ -1,4 +1,8 @@
 # Soccer-Data-Base API
+
+## GOAL
+
+Create a Soccer Management System using Spring Boot RESTful API that performs CRUD operations by making a database call to a Postgres SQL database using JPA(JAVA Persistence API). The system should have proper functionality to register soccer leagues, teams in each league, and players in each team. Also the functionality to read, update and delete leagues/teams/players. 
 ## Entity Relationship Diagram (ERD):
 
 ![ERD.png](images/ERD.png)
