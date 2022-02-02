@@ -37,6 +37,9 @@ In the resources folder I changed I added a new file application-dev.properties 
 
 - #### Delete team by id
 ![deleteteambyid.png](images/deleteteambyid.png)
+
+- #### Update team by id
+![updateteambyid.png](images/updateteambyid.png)
 ## Entity Relationship Diagram (ERD):
 
 ![ERD.png](images/ERD.png)
