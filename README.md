@@ -10,7 +10,13 @@ Create a Soccer Management System using Spring Boot RESTful API that performs CR
 ![initializer.png](images/initializer.png)
 ## Maven dependencies
 The dependency section contains the dependencies I added to the project namely Spring Data JPA, PostgreSQL driver, and SpringWeb.
+- Pom.xml file dependencies
 ![dependencies.png](images/dependencies.png)
+
+## Configuring PostgreSQL, JPA, and Hibernate
+In the resources folder I changed I added a new file application-dev.properties to hold the configurations
+- Application-dev.properties file
+![properties.png](images/properties.png)
 
 ## Entity Relationship Diagram (ERD):
 
