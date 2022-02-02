@@ -29,8 +29,11 @@ In the resources folder I changed I added a new file application-dev.properties 
 
 ## Testing with Postman 
 - Get all teams
+
 ![getallteams.png](images/getallteams.png)
 
+- Create new teamPlayer
+![newteamplayer.png](images/newteamplayer.png)
 ## Entity Relationship Diagram (ERD):
 
 ![ERD.png](images/ERD.png)
