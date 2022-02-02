@@ -5,6 +5,8 @@ import com.soccer.exceptions.InformationNotFoundException;
 import com.soccer.model.League;
 import com.soccer.model.Player;
 import com.soccer.model.Team;
+import com.soccer.model.TeamAddress;
+import com.soccer.repository.AddressRepository;
 import com.soccer.repository.LeagueRepository;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.repository.TeamRepository;
@@ -35,6 +37,11 @@ public class TeamService {
     public void setLeagueRepository(LeagueRepository leagueRepository){
         this.leagueRepository = leagueRepository;
     }
+    private AddressRepository addressRepository;
+    @Autowired
+    public void setAddressRepository(AddressRepository addressRepository){
+        this.addressRepository = addressRepository;
+    }
 
     public Team getTeam(Long teamId) {
         Optional<Team> team = teamRepository.findById(teamId);
@@ -56,10 +63,14 @@ public class TeamService {
         }
     }
 
-    public Team createTeam(Team teamObject, Long leagueId) {
+    public Team createTeam(Team teamObject, Long leagueId, Long addressId) {
         Optional<League> league = leagueRepository.findById(leagueId);
         if(league.isEmpty()){
             throw new InformationNotFoundException("league with the id" +leagueId+ " not found");
+        }
+        Optional<TeamAddress> teamAddress = addressRepository.findById(addressId);
+        if(teamAddress.isEmpty()){
+            throw new InformationNotFoundException("address with id " + addressId+ " does not exist");
         }
 
         Team team = teamRepository.findByName(teamObject.getName());
@@ -67,6 +78,7 @@ public class TeamService {
             throw new InformationExistException("team with name " + team.getName() + " already exists");
         } else {
             teamObject.setLeague(league.get());
+            teamObject.setTeamAddress(teamAddress.get());
             return teamRepository.save(teamObject);
         }
     }

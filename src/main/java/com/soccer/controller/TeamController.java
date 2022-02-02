@@ -39,9 +39,9 @@ public class TeamController {
         return teamService.getTeam(teamId);
     }
 
-    @PostMapping("/leagues/{leagueId}/teams/")
-    public Team createTeam(@RequestBody Team teamObject, @PathVariable(value = "leagueId") Long leagueId) {
-        return teamService.createTeam(teamObject, leagueId);
+    @PostMapping("/leagues/{leagueId}/address/{addressId}/teams/")
+    public Team createTeam(@RequestBody Team teamObject, @PathVariable(value = "leagueId") Long leagueId, @PathVariable(value = "addressId") Long addressId) {
+        return teamService.createTeam(teamObject, leagueId, addressId);
     }
     @PutMapping("/teams/{teamId}/")
     public Team updateTeam(@PathVariable(value = "teamId") Long teamId, @RequestBody Team teamObject){
