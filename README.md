@@ -34,6 +34,7 @@ In the resources folder I changed I added a new file application-dev.properties 
 
 - Create new teamPlayer
 ![newteamplayer.png](images/newteamplayer.png)
+adding some text to test
 ## Entity Relationship Diagram (ERD):
 
 ![ERD.png](images/ERD.png)
