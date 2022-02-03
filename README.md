@@ -58,6 +58,7 @@ In the resources folder I changed I added a new file application-dev.properties 
 |8. As a user, I would like to modify a player salary/position.
 |9. As a user, I would like to delete a player from the team.
 |10. As a user, I would like to list all the players in the team.
+|11. As a user, I would like to modify the address of a team.
 
 ## System Tools Used
 

@@ -19,12 +19,7 @@ public class TeamController {
     public void setTeamRepository(TeamService teamService){
         this.teamService = teamService;
     }
-    private AddressService addressService;
 
-    @Autowired
-    public void setAddressService(AddressService addressService){
-        this.addressService = addressService;
-    }
 
     @GetMapping(path = "/hello-world/")
     public String getHelloWorld(){
@@ -78,18 +73,6 @@ public class TeamController {
                                  @PathVariable(value = "playerId") Long playerId)
     {
         teamService.deleteTeamPlayer(teamId, playerId);
-    }
-    @PostMapping("/address/")
-    public TeamAddress createAddress(@RequestBody TeamAddress addressObject){
-        return addressService.createTeamAddress(addressObject);
-    }
-    @PutMapping("/address/{addressId}/")
-    public TeamAddress updateTeamAddress(@PathVariable(value = "addressId") Long id, @RequestBody TeamAddress teamAddressObject){
-        return addressService.updateTeamAddress(id, teamAddressObject);
-    }
-    @GetMapping("/address/")
-    public List<TeamAddress> getAllAddresses(){
-        return addressService.getAllAddresses();
     }
 
 
