@@ -84,8 +84,10 @@ public class TeamService {
     }
 
     public String deleteTeam(Long teamId) {
-        Team team = teamRepository.getById(teamId);
-        if (team == null) {
+
+        Optional<Team> team = teamRepository.findById(teamId);
+        if(team.isEmpty())
+        {
             throw new InformationNotFoundException("team with id " + teamId + " not found");
         } else {
             teamRepository.deleteById(teamId);
@@ -144,7 +146,7 @@ public class TeamService {
         if (team.isEmpty()) {
             throw new InformationNotFoundException("team with id " + teamId + " does not exist ");
         }
-        Optional<Player> player = playerRepository.findByTeamId(teamId).stream().filter(p -> p.getId().equals(teamId)).findFirst();
+        Optional<Player> player = playerRepository.findByTeamId(teamId).stream().filter(p -> p.getId().equals(playerId)).findFirst();
         if (!player.isPresent()) {
             throw new InformationNotFoundException("player with id " + playerId + " does not exist");
         }
