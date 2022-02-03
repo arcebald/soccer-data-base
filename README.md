@@ -62,6 +62,7 @@ In the resources folder I changed I added a new file application-dev.properties 
 ## System Tools Used
 
 - Spring Boot
+- Apache Maven
 - PostgreSQL
 - Lucid App
 - IntelliJ IDEA/Java 17
@@ -76,7 +77,7 @@ In the resources folder I changed I added a new file application-dev.properties 
 | POST _/api/teams/_ | POST a new team
 | DELETE _/api/teams/{teamId}/_ | DELETE a team by ID
 | POST _/api/teams/{teamId}/players/_ | POST a player in a team
-| PUT _/api/teams/{teamId}/_ | PUT update a team by ID
+| PUT _/api/address/{teamAddressId}/teams/{teamId}/_ | PUT update a team by ID and addressId
 | GET _/api/teams/{teamId}/players/_ | GET a list of players for the team with id specified
 | GET _/api/teams/{teamId}/players/{playerId}/_ | GET a player from a team
 | DELETE _/api/teams/{teamId}/players/{playerId}/_ | DELETE a player from the a team
@@ -87,7 +88,7 @@ In the resources folder I changed I added a new file application-dev.properties 
 | DELETE _/api/leagues/{leagueId}/_ | DELETE a league by id
 | POST _/api/leagues/_ | POST new league
 | PUT _/api/leagues/{leagueId}/_ | PUT to change a league
-| POST _/api/leagues/{leagueId}/teams/{teamId}/_ | POST a team through a league id
+| POST _/api/leagues/{leagueId}/address/{addressId}/teams/_ | POST a team with a league id and address id
 
 ## Project Challenges
 1. The first challenge I faced was designing the ERD for the system and the relashion between the tables. After spending some time on https://vertabelo.com/blog/database-model-for-an-online-store/ I had a better picture how my system will work.

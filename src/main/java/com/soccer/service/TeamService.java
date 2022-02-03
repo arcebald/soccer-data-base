@@ -111,15 +111,22 @@ public class TeamService {
     }
 
 
-    public Team updateTeam(Long teamId, Team teamObject) {
+    public Team updateTeam(Long teamId, Team teamObject, TeamAddress addressObject) {
         Optional<Team> team = teamRepository.findById(teamId);
         if (team.isEmpty()) {
             throw new InformationNotFoundException("team with id " + teamId + " not found");
-        } else {
+        }
+         Optional<TeamAddress> teamAddress = addressRepository.findById(addressObject.getId());
+        if(teamAddress.isEmpty()){
+            throw new InformationNotFoundException(" TeamAddress with id " + addressObject.getId() + " not found");
+        }
+
+
             team.get().setName(teamObject.getName());
             team.get().setClubValue(teamObject.getClubValue());
+            team.get().setTeamAddress(teamAddress.get());
             return teamRepository.save(team.get());
-        }
+
     }
 
 

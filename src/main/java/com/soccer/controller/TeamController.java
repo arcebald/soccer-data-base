@@ -43,9 +43,9 @@ public class TeamController {
     public Team createTeam(@RequestBody Team teamObject, @PathVariable(value = "leagueId") Long leagueId, @PathVariable(value = "addressId") Long addressId) {
         return teamService.createTeam(teamObject, leagueId, addressId);
     }
-    @PutMapping("/teams/{teamId}/")
-    public Team updateTeam(@PathVariable(value = "teamId") Long teamId, @RequestBody Team teamObject){
-        return teamService.updateTeam(teamId, teamObject);
+    @PutMapping("/address/{teamAddressId}/teams/{teamId}/")
+    public Team updateTeam(@PathVariable(value = "teamId") Long teamId, @RequestBody Team teamObject, @PathVariable(value = "teamAddressId") TeamAddress teamAddress){
+        return teamService.updateTeam(teamId, teamObject, teamAddress);
     }
 
     @DeleteMapping("/teams/{teamId}/")
