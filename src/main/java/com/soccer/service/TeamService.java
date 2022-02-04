@@ -162,9 +162,11 @@ public class TeamService {
         if (!player.isPresent()) {
             throw new InformationNotFoundException("player with id " + playerId + " does not exist");
         }
-        Player oldPlayer = playerRepository.findByFirstName(playerObject.getFirstName());
-        if (oldPlayer != null) {
-            throw new InformationNotFoundException("player with name " + oldPlayer.getFirstName() + " already exists");
+        Player oldPlayerLastName = playerRepository.findByLastName(playerObject.getLastName());
+        Player oldPlayerFirstName = playerRepository.findByFirstName(playerObject.getFirstName());
+        if (oldPlayerFirstName != null && oldPlayerLastName != null) {
+            throw new InformationExistException("player with firstName " + oldPlayerFirstName.getFirstName() + " and lastName "
+                    + oldPlayerLastName.getLastName() +" already exists");
         }
         player.get().setFirstName(playerObject.getFirstName());
         player.get().setLastName(playerObject.getLastName());

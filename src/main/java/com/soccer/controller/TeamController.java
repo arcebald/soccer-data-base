@@ -20,11 +20,6 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-
-    @GetMapping(path = "/hello-world/")
-    public String getHelloWorld(){
-        return "Hello World";
-    }
     @GetMapping("/teams/")
     public List<Team> getAllTeams(){
         return teamService.getAllTeams();
