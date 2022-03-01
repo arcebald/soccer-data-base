@@ -19,9 +19,11 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
     public TeamAddress createTeamAddress(TeamAddress teamAddress){
-        TeamAddress teamAddress1 = addressRepository.findByStreet(teamAddress.getStreet());
-        if(teamAddress1 != null){
-            throw new InformationExistException("address with " + teamAddress1.getStreet()+ " already exists");
+        //TeamAddress teamAddress2 = addressRepository.findByCityAndStreet(teamAddress.getCity(), teamAddress.getStreet());
+        TeamAddress teamAddress2 = addressRepository.findByStreet(teamAddress.getStreet());
+        if(teamAddress2 != null)
+        {
+            throw new InformationExistException("address with " + teamAddress2.getStreet()+ " already exists");
         }else{
             System.out.println("here is the zipcode : "+ teamAddress.getZipcode());
             return addressRepository.save(teamAddress);

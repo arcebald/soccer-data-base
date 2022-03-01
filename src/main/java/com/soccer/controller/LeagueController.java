@@ -21,6 +21,7 @@ public class LeagueController {
     public List<League> getAllLeagues(){
         return leagueService.getAllLeagues();
     }
+
     @DeleteMapping("/leagues/{leagueId}/")
     public String deleteLeague(@PathVariable(value = "leagueId") Long leagueId){
         return leagueService.deleteLeague(leagueId);

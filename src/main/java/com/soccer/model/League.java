@@ -71,7 +71,6 @@ public class League {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", year=" + year +
-                ", listOfTeams=" + listOfTeams +
                 '}';
     }
 }
